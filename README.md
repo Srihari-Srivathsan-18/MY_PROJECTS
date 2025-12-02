@@ -1,125 +1,46 @@
-# Gene Finder Program
+Gene Finder Program
+This bioinformatics tool identifies genes in DNA sequences by locating start codons (ATG) and stop codons (TAA, TAG, TGA). Developed for Semester 1 coursework, it processes sequences from CSV files to find open reading frames while checking for proper alignment.
 
-🧬 A bioinformatics tool to identify genes in DNA sequences by detecting start codons (ATG) and stop codons (TAA, TAG, TGA).
+Project Overview
+The program implements a gene-finding algorithm that reads DNA data and detects potential genes. It ensures the distance between start and stop codons is a multiple of three to maintain the correct reading frame. This approach helps in basic genomic analysis without needing advanced libraries.
 
-## 📋 Project Overview
+Key Features
+Dual versions in Python and C for flexibility in performance and ease of use
 
-This project was developed as part of Semester 1 coursework and implements a gene-finding algorithm that processes DNA sequences from CSV files. The program identifies open reading frames (ORFs) by locating start and stop codons while ensuring proper reading frame alignment.
+Reads input from a simple CSV file named dnaseq.csv
 
-## ✨ Features
+Detects multiple genes in a single sequence
 
-- **Dual Implementation**: Available in both Python and C
-- **CSV Input Support**: Reads DNA sequences from `dnaseq.csv` file
-- **Multiple Gene Detection**: Identifies all genes within a DNA sequence
-- **Reading Frame Validation**: Ensures detected genes maintain correct codon alignment
-- **User-Friendly Output**: Clear display of identified genes with processing feedback
+Validates codon alignment to avoid false positives
 
-## 🔬 How It Works
+Provides clear output showing identified genes and feedback
 
-The gene finder algorithm:
+How It Works
+The algorithm starts by scanning for the ATG start codon in the sequence. Once found, it searches downstream for a stop codon and confirms the length is divisible by three. It then extracts the full gene sequence, including the stop, and continues scanning the rest of the input. This iterative process handles overlapping or multiple genes effectively.
 
-1. Searches for the start codon `ATG` in the DNA sequence
-2. Looks for valid stop codons (`TAA`, `TAG`, `TGA`) downstream
-3. Validates that the distance between start and stop codons is divisible by 3 (proper reading frame)
-4. Extracts and displays the complete gene sequence including the stop codon
-5. Continues searching for additional genes in the remaining sequence
+Getting Started
+Prerequisites
+For the Python version, you need Python 3.x and no extra libraries beyond the standard ones. The C version requires a compiler like GCC and basic standard libraries.
 
-## 🚀 Getting Started
+Input Format
+Create dnaseq.csv in the project directory with a header "enter_data_line_by_line" followed by one DNA sequence per line, such as ATGTAAGCATAGTAGCCCATG.
 
-### Prerequisites
+Running the Program
+Run the Python script with: python SEM1_BIO_PROJECT.py. For C, compile with: gcc SEM1_BIO_PROJECT.c -o genefinder, then execute: ./genefinder.
 
-**For Python version:**
-- Python 3.x
-- No additional libraries required (uses standard library)
+Repository Structure
+SEM1_BIO_PROJECT.py: Python code
 
-**For C version:**
-- GCC compiler or any C compiler
-- Standard C libraries
+SEM1_BIO_PROJECT.c: C code
 
-### Input File Format
+SEM_1_BIO_PROJECT.csv: Sample data
 
-Create a file named `dnaseq.csv` in the same directory with the following format:
+README.md: Documentation
 
-```csv
-enter_data_line_by_line
-ATGTAAGCATAGTAGCCCATG
-ATGCCCGGGTAATTTATG
-```
+LICENSE: MIT license file
 
-### Running the Program
+Example Output
+The program displays a header with credits to contributors, reads the CSV, and lists found genes like ATGTAA and ATGCCCTAG from the sequence ATGTAAATGCCCTAG. It ends with instructions to edit the CSV for new inputs.
 
-**Python Version:**
-```bash
-python SEM1_BIO_PROJECT.py
-```
-
-**C Version:**
-```bash
-gcc SEM1_BIO_PROJECT.c -o genefinder
-./genefinder
-```
-
-## 📁 Repository Structure
-
-```
-MY_PROJECTS/
-├── SEM1_BIO_PROJECT.py      # Python implementation
-├── SEM1_BIO_PROJECT.c       # C implementation
-├── SEM_1_BIO_PROJECT.csv    # Sample DNA sequence data
-├── README.md                # This file
-└── LICENSE                  # MIT License
-```
-
-## 🧪 Example Output
-
-```
-===============================GENE FINDER PROGRAM===============================
-credits: ritvik, srihari, anubhav, shanmukha, sibiram and aditya
-=================================================================================
-This program reads your CSV file in the same directory[dnaseq.csv] for dna data
-=====================================READING=====================================
-
-The genes identified in the sequence 'ATGTAAATGCCCTAG' are:
-ATGTAA
-ATGCCCTAG
-
-=================================================================================
-Edit the CSV file containing the DNA sequence to change input parameters
-```
-
-## 🛠️ Technologies Used
-
-- **Python 3**: High-level implementation with CSV module
-- **C**: Performance-optimized implementation with file I/O
-- **Standard Libraries**: csv, time (Python) | stdio.h, stdlib.h, string.h, unistd.h (C)
-
-## 👥 Contributors
-
-- Ritvik
-- Srihari
-- Anubhav
-- Shanmukha
-- Sibiram
-- Aditya
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
-## 📧 Contact
-
-Srihari Srivathsan - [@Srihari-Srivathsan-18](https://github.com/Srihari-Srivathsan-18)
-
-Project Link: [https://github.com/Srihari-Srivathsan-18/MY_PROJECTS](https://github.com/Srihari-Srivathsan-18/MY_PROJECTS)
-
-## 🎓 Academic Context
-
-This project was developed as part of the Artificial Intelligence curriculum at SRM Institute of Science and Technology (2024-2029).
-
----
-
-**Note**: To use the program, ensure that `dnaseq.csv` is in the same directory as the executable. The CSV file should contain DNA sequences with one sequence per line under the header `enter_data_line_by_line`.
+Technologies and Contributors
+It uses Python's CSV module for input handling and C's standard I/O for efficiency. Contributors include Ritvik, Srihari, Anubhav, Shanmukha, Sibiram, and Aditya. The project follows the MIT License and welcomes contributions via GitHub issues.
